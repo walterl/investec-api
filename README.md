@@ -2,6 +2,12 @@
 
 Clojure wrapper for [Investec's Programmable Banking API](https://developer.investec.com/programmable-banking/).
 
+## Progress
+
+* [X] Authorization
+* [X] Accounts
+* [ ] Programmable cards API
+
 ## Usage
 
 Intended for use by other Clojure applications.

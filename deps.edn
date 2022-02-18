@@ -1,11 +1,20 @@
 {:paths ["src" "resources"]
- :deps {org.clojure/clojure {:mvn/version "1.10.3"}}
+ :deps {camel-snake-kebab/camel-snake-kebab {:mvn/version "0.4.2"}
+        cheshire/cheshire {:mvn/version "5.10.2"}
+        clojure.java-time/clojure.java-time {:mvn/version "0.3.3"}
+        org.clj-commons/clj-http-lite {:mvn/version "0.4.392"}
+        org.clojure/clojure {:mvn/version "1.10.3"}}
  :aliases
- {:test
-  {:extra-paths ["test"]
+ {:codox
+  {:extra-deps {codox/codox {:mvn/version "0.10.8"}}
+   :exec-fn codox.main/generate-docs
+   :exec-args {:metadata {:doc/format :markdown}}}
+
+  :test
+  {:extra-paths ["test" "test/resources"]
    :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}
-                io.github.cognitect-labs/test-runner
-                {:git/tag "v0.5.0" :git/sha "48c3c67"}}}
-  :build {:deps {io.github.seancorfield/build-clj
-                 {:git/tag "v0.6.6" :git/sha "171d5f1"}}
-          :ns-default build}}}
+                io.github.cognitect-labs/test-runner {:git/tag "v0.5.0" :git/sha "48c3c67"}}}
+
+  :build
+  {:deps {io.github.seancorfield/build-clj {:git/tag "v0.6.6" :git/sha "171d5f1"}}
+   :ns-default build}}}
