@@ -68,15 +68,15 @@
   (cond-> {}
     from-date (assoc "fromDate" (u/iso8601-date-time from-date))
     to-date (assoc "toDate" (u/iso8601-date-time to-date))
-    transaction-type (assoc "transactionType" (csk/->PascalCaseString transaction-type))))
+    transaction-type (assoc "transactionType" (some-> transaction-type csk/->PascalCaseString))))
 
 (defn- txn-with-parsed-values
   [m]
   (-> m
       (update :card-number not-empty)
-      (update :status csk/->kebab-case-keyword)
-      (update :type csk/->kebab-case-keyword)
-      (update :transaction-type csk/->kebab-case-keyword)))
+      (update :status #(some-> % csk/->kebab-case-keyword))
+      (update :type #(some-> % csk/->kebab-case-keyword))
+      (update :transaction-type #(some-> % csk/->kebab-case-keyword))))
 
 (defn- json->txn-map
   [m]
