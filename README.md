@@ -39,4 +39,4 @@ Your library will be deployed to net.clojars.walterl/investec-api on clojars.org
 
 Copyright © 2022 Walter Leibbrandt
 
-Distributed under the GNU General Public License version 3.
+Distributed under the Eclipse Public License version 1.0.
