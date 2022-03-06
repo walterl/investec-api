@@ -2,41 +2,61 @@
 
 Clojure wrapper for [Investec's Programmable Banking API](https://developer.investec.com/programmable-banking/).
 
-## Progress
-
-* [X] Authorization
-* [X] Accounts
-* [ ] Programmable cards API
-
 ## Usage
 
-Intended for use by other Clojure applications.
+Add `net.clojars.walterl/investec-api {:mvn/version "0.1.1"}` to your dependencies in `deps.edn`.
 
-Run the project's tests (they'll fail until you edit them):
+## Example
 
-    $ clojure -T:build test
+This library is intended for use by other Clojure applications.
 
-Run the project's CI pipeline and build a JAR (this will fail until you edit the tests to pass):
+```clojure
+(require '[walterl.investec-api.accounts :as inv])
+(require '[walterl.investec-api.auth :as auth])
 
-    $ clojure -T:build ci
+(def api-token (auth/access-token "<MY CLIENT ID>" "<MY SECRET>"))
 
-This will produce an updated `pom.xml` file with synchronized dependencies inside the `META-INF`
-directory inside `target/classes` and the JAR in `target`. You can update the version (and SCM tag)
-information in generated `pom.xml` by updating `build.clj`.
+(doseq [{:keys [account-id account-name account-number product-name]} (inv/accounts api-token)
+        :let [{:keys [currency current-balance]} (inv/balance api-token account-id)]]
+  (println (format "Account %s (%s %s) has %s %.2f"
+                   account-name product-name account-number
+                   currency (float current-balance))))
+```
+
+The above example will print the following for the example data from the API docs:
+
+```
+Account Mr John Doe (Private Bank Account 10010206147) has ZAR 28857.76
+```
+
+See the [API docs](https://walterl.github.io/investec-api) for more details about available functions.
+
+## Progress
+
+* [X] [Authorization](https://developer.investec.com/programmable-banking/#open-api-authorization)
+* [X] [Accounts](https://developer.investec.com/programmable-banking/#open-api-accounts)
+* [ ] [Programmable cards API](https://developer.investec.com/programmable-banking/#open-api-programmable-cards-api)
+
+## Development
+
+Run the project's tests:
+
+    $ clj -T:build test
+
+Run the project's CI pipeline and build a JAR:
+
+    $ clj -T:build ci
 
 Install it locally (requires the `ci` task be run first):
 
-    $ clojure -T:build install
+    $ clj -T:build install
 
-Deploy it to Clojars -- needs `CLOJARS_USERNAME` and `CLOJARS_PASSWORD` environment
-variables (requires the `ci` task be run first):
+Generate API docs (outputs to `target/doc`):
 
-    $ clojure -T:build deploy
-
-Your library will be deployed to net.clojars.walterl/investec-api on clojars.org by default.
+    $ clj -X:codox
 
 ## License
 
-Copyright © 2022 Walter Leibbrandt
+Copyright © 2022 @walterl
 
 Distributed under the Eclipse Public License version 1.0.
