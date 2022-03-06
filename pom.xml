@@ -3,9 +3,9 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.clojars.walterl</groupId>
   <artifactId>investec-api</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.2-SNAPSHOT</version>
   <name>walterl/investec-api</name>
-  <description>FIXME: my new library.</description>
+  <description>Clojure wrapper for Investec's Programmable Banking API.</description>
   <url>https://github.com/walterl/investec-api</url>
   <licenses>
     <license>
@@ -22,7 +22,7 @@
     <url>https://github.com/walterl/investec-api</url>
     <connection>scm:git:git://github.com/walterl/investec-api.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/walterl/investec-api.git</developerConnection>
-    <tag>v0.1.0-SNAPSHOT</tag>
+    <tag>v0.1.2-SNAPSHOT</tag>
   </scm>
   <dependencies>
     <dependency>

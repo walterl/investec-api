@@ -3,7 +3,7 @@
   (:require [org.corfield.build :as bb]))
 
 (def lib 'net.clojars.walterl/investec-api)
-(def version "0.1.0-SNAPSHOT")
+(def version "0.1.2-SNAPSHOT")
 
 (defn test "Run the tests." [opts]
   (bb/run-tests opts))
