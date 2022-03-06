@@ -2,7 +2,9 @@
 
 Clojure wrapper for [Investec's Programmable Banking API](https://developer.investec.com/programmable-banking/).
 
-## Usage
+## Installation
+
+[![Clojars Project](https://img.shields.io/clojars/v/net.clojars.walterl/investec-api.svg)](https://clojars.org/net.clojars.walterl/investec-api)
 
 Add `net.clojars.walterl/investec-api {:mvn/version "0.1.1"}` to your dependencies in `deps.edn`.
 
